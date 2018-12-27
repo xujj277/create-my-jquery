@@ -16,29 +16,38 @@
     <li id="item5">选项5</li>
   </ul>
   <script>
+    var classes = ['a', 'b', 'c']
 
-    Node.prototype.getSiblings = function getSiblings () {
-      var allChildren = this.parentNode.children
-      var array = {
-        length: 0
+    window.Node2 = function (nodeOrSelector) {
+      let node
+      if (typeof nodeOrSelector === 'string') {
+        node = document.querySelector(nodeOrSelector)
+      } else {
+        node = nodeOrSelector
       }
-      for (let i = 0; i < allChildren.length; i++) {
-        if (allChildren[i] !== this) {
-          array[array.length] = allChildren[i]
-          array.length += 1
+
+      return {
+        getSiblings: function () {
+          var allChildren = node.parentNode.children
+          var array = {
+            length: 0
+          }
+          for (let i = 0; i < allChildren.length; i++) {
+            if (allChildren[i] !== this) {
+              array[array.length] = allChildren[i]
+              array.length += 1
+            }
+          }
+          return array
+        },
+        addClass: function (classes) {
+          classes.forEach(i => node.classList.add(i))
         }
       }
-      return array
     }
-
-
-    var classes = ['a', 'b', 'c']
-    Node.prototype.addClass =  function addClass (classes) {
-      classes.forEach(i => this.classList.add(i))
-    }
-
-    item3.getSiblings.call(item4)
-    item3.addClass.call(item3, classes)
+    var node2 = Node2(item3)
+    node2.getSiblings()
+    node2.addClass(['a', 'b', 'c'])
   </script>
 </body>
 </html>
