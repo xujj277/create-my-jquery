@@ -16,14 +16,14 @@
     <li id="item5">选项5</li>
   </ul>
   <script>
-    window.xjjdom = {}
-    xjjdom.getSiblings = function getSiblings (node) {
-      var allChildren = node.parentNode.children
+
+    Node.prototype.getSiblings = function getSiblings () {
+      var allChildren = this.parentNode.children
       var array = {
         length: 0
       }
       for (let i = 0; i < allChildren.length; i++) {
-        if (allChildren[i] !== node) {
+        if (allChildren[i] !== this) {
           array[array.length] = allChildren[i]
           array.length += 1
         }
@@ -33,12 +33,12 @@
 
 
     var classes = ['a', 'b', 'c']
-    xjjdom.addClass =  function addClass (node, classes) {
-      classes.forEach(i => node.classList.add(i))
+    Node.prototype.addClass =  function addClass (classes) {
+      classes.forEach(i => this.classList.add(i))
     }
 
-    xjjdom.getSiblings(item3)
-    xjjdom.addClass(item3, classes)
+    item3.getSiblings()
+    item3.addClass(classes)
   </script>
 </body>
 </html>
