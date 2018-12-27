@@ -37,8 +37,8 @@
       classes.forEach(i => this.classList.add(i))
     }
 
-    item3.getSiblings()
-    item3.addClass(classes)
+    item3.getSiblings.call(item4)
+    item3.addClass.call(item3, classes)
   </script>
 </body>
 </html>
